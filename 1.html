@@ -1,140 +1,33 @@
-<!DOCTYPE html>
-<html lang="uz">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Elshod Mahkamov - Dasturchi</title>
-  <link href="1.css" rel="stylesheet" />
-  <style>
-    /* Kalkulyator dizayni */
-    .calculator {
-      border: 2px solid #00ffff;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px #00ffff;
-      width: fit-content;
-      margin-top: 15px;
-    }
-
-    #display {
-      width: 100%;
-      height: 50px;
-      font-size: 24px;
-      margin-bottom: 15px;
-      text-align: right;
-      padding: 10px;
-      background-color: #000;
-      color: #0ff;
-      border: none;
-      box-shadow: 0 0 10px #0ff;
-    }
-
-    .buttons {
-      display: grid;
-      grid-template-columns: repeat(4, 60px);
-      gap: 10px;
-    }
-
-    .buttons button {
-      font-size: 20px;
-      padding: 15px;
-      background-color: #111;
-      color: #0ff;
-      border: 1px solid #0ff;
-      border-radius: 10px;
-      cursor: pointer;
-      box-shadow: 0 0 10px #0ff;
-      transition: 0.2s;
-    }
-
-    .buttons button:hover {
-      background-color: #222;
-      box-shadow: 0 0 20px #0ff;
-    }
-  </style>
-</head>
 <body>
-  <header>
-    <h1>Salom, men <span class="name">Elshod Mahkamov</span></h1>
-    <p>17 yoshli yosh dasturchi</p>
-  </header>
+  <div class="controls">
+    <button class="control-btn" onclick="toggleAnimation()">⏸️ Pause</button>
+    <button class="control-btn" onclick="resetPosition()">🔄 Reset</button>
+    <button class="control-btn" onclick="changeDirection()">
+      ↔️ Direction
+    </button>
+  </div>
+  <link rel="stylesheet" href="1.css">
 
-  <section class="about">
-    <h2>🧑‍💻 Men haqimda</h2>
-    <p>Men dasturlash bilan shug‘ullanayotgan yosh ijodkorman. Web texnologiyalarni o‘rganmoqdaman: HTML, CSS va JavaScript asoslarini puxta o‘zlashtiryapman. Har kuni yangi narsa o‘rganishga harakat qilaman.</p>
-  </section>
+  <div class="speed-indicator">
+    Speed: <span id="speedValue">120</span> px/s
+  </div>
 
-  <section class="projects">
-    <h2>🚀 Loyihalarim</h2>
+  <div class="container">
+    <canvas id="particleCanvas"></canvas>
+    <canvas id="scannerCanvas"></canvas>
 
-    <div class="project">
-      <h3>📝 Portfolio Websayti</h3>
-      <p>Bu portfolio vebsayt HTML va CSS yordamida yaratilgan.</p>
-      <a href="#">GitHub ko‘rish (keyin qo‘shiladi)</a>
+    <div class="scanner"></div>
+
+    <div class="card-stream" id="cardStream">
+      <div class="card-line" id="cardLine"></div>
     </div>
+  </div>
 
-    <div class="project">
-      <h3>🧮 Kalkulyator App</h3>
-      <p>JavaScript asosida yasalgan oddiy kalkulyator.</p>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="1.js"></script>
 
-      <!-- Kalkulyator joylashgan qism -->
-      <div class="calculator">
-        <input type="text" id="display" disabled />
-        <div class="buttons">
-          <button onclick="clearDisplay()">AC</button>
-          <button onclick="append('/')">/</button>
-          <button onclick="append('*')">*</button>
-          <button onclick="append('-')">-</button>
-
-          <button onclick="append('7')">7</button>
-          <button onclick="append('8')">8</button>
-          <button onclick="append('9')">9</button>
-          <button onclick="append('+')">+</button>
-
-          <button onclick="append('4')">4</button>
-          <button onclick="append('5')">5</button>
-          <button onclick="append('6')">6</button>
-          <button onclick="append('.')">.</button>
-
-          <button onclick="append('1')">1</button>
-          <button onclick="append('2')">2</button>
-          <button onclick="append('3')">3</button>
-          <button onclick="calculate()">=</button>
-
-          <button onclick="append('0')">0</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="contact">
-    <h2>📞 Aloqa</h2>
-    <p>Telegram: @elshod2_4</p>
-    <p>Gmail: mahkamovelshod641@gmail.com</p>
-    <p>GitHub: <a href="#">github.com/elshod</a></p>
-  </section>
-
-  <footer>
-    <p>© 2025 Elshod Mahkamov. Barcha huquqlar himoyalangan.</p>
-  </footer>
-
-  <!-- Kalkulyator JavaScript funksiyasi -->
-  <script>
-    function append(char) {
-      document.getElementById('display').value += char;
-    }
-
-    function clearDisplay() {
-      document.getElementById('display').value = '';
-    }
-
-    function calculate() {
-      try {
-        document.getElementById('display').value = eval(document.getElementById('display').value);
-      } catch {
-        document.getElementById('display').value = 'Error';
-      }
-    }
-  </script>
+  <div class="inspiration-credit">
+    Inspired by
+    <a href="https://evervault.com/" target="_blank">@evervault.com</a>
+  </div>
 </body>
-</html>
